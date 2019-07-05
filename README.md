@@ -13,13 +13,13 @@ Install-Package Barcoder.WPF
 ## Supported Barcode Types:
 - [x] DataMatrix (ECC 200)
 - [x] Code128
-- [] 2 of 5
-- [] Codabar
-- [] Code 39
-- [] Code 93
-- [] EAN 8
-- [] EAN 13
-- [] QR Code
+- [ ] 2 of 5
+- [ ] Codabar
+- [ ] Code 39
+- [ ] Code 93
+- [ ] EAN 8
+- [ ] EAN 13
+- [ ] QR Code
 
 ## Usage - WPF Control
 
