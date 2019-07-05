@@ -4,28 +4,24 @@
     <!--*-->
     <id>Barcoder.WPF</id>
     <!--*-->
-    <version>0.0.0.2-alpha</version>
+    <version>0.0.0.2</version>
     <title>Barcoder.WPF</title>
     <!--*-->
-    <authors>Frank Schmid</authors>
-    <owners>Frank Schmid</owners>
-    <!--
-    <licenseUrl></licenseUrl>
-    <projectUrl></projectUrl>
-    <iconUrl></iconUrl>
--->
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Int32Overflow</authors>
+    <owners>Int32Overflow</owners>
+    <licenseUrl>https://github.com/Int32Overflow/Barcoder.WPF/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Int32Overflow/Barcoder.WPF</projectUrl>
+    <!--<iconUrl></iconUrl>-->
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <!--*-->
     <description>Barcode WPF Control</description>
     <!--*-->
-    <releaseNotes>BugFix: Antialiasing disabled</releaseNotes>
+    <releaseNotes>Init</releaseNotes>
     <copyright>Copyright ©  2019</copyright>
     <tags>
     </tags>
     <dependencies>
-      <!--
-      <dependency id="SampleDependency" version="1.0" />
--->
+      <dependency id="Barcoder" version="1.0.0.59" />
     </dependencies>
   </metadata>
 </package>
