@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barcoder.WPF", "Barcoder.WPF\Barcoder.WPF.csproj", "{65208AB5-3E69-43BB-9639-898334807603}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65208AB5-3E69-43BB-9639-898334807603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65208AB5-3E69-43BB-9639-898334807603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65208AB5-3E69-43BB-9639-898334807603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65208AB5-3E69-43BB-9639-898334807603}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F58B0CA3-FF7A-4EDD-B7BE-DC1058AB5148}
+	EndGlobalSection
+EndGlobal
