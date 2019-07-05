@@ -4,6 +4,7 @@ WPF Component for Library [Barcoder](https://github.com/huysentruitw/barcoder)
 ## Install
 
 Install NuGet-Package [Barcoder.WPF](https://www.nuget.org/packages/Barcoder.WPF/) 
+[https://img.shields.io/nuget/v/Barcoder.WPF.svg?style=flat&max-age=86400](https://www.nuget.org/packages/Barcoder.WPF/)
 
 ```
 Install-Package Barcoder.WPF
