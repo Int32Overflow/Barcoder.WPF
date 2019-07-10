@@ -23,7 +23,7 @@ namespace Barcoder.WPF
 
         protected override IBarcode GetBarcode()
         {
-            return Code128Encoder.Encode(Value, IncludeChecksum);
+            return Code128Encoder.Encode(Value ?? "", IncludeChecksum);
         }
     }
 }

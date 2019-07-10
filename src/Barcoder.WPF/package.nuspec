@@ -4,7 +4,7 @@
     <!--*-->
     <id>Barcoder.WPF</id>
     <!--*-->
-    <version>0.0.0.2</version>
+    <version>0.0.0.4</version>
     <title>Barcoder.WPF</title>
     <!--*-->
     <authors>Int32Overflow</authors>
@@ -16,7 +16,7 @@
     <!--*-->
     <description>Barcode WPF Control</description>
     <!--*-->
-    <releaseNotes>Init</releaseNotes>
+    <releaseNotes>BugFix: Value cannot be null</releaseNotes>
     <copyright>Copyright ©  2019</copyright>
     <tags>
     </tags>

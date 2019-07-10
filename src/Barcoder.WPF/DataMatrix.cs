@@ -23,7 +23,7 @@ namespace Barcoder.WPF
         protected override IBarcode GetBarcode()
         {
             int? fixedRowCount = FixedRowCount == 0 ? (int?)null : FixedRowCount;
-            return DataMatrixEncoder.Encode(Value, fixedRowCount);
+            return DataMatrixEncoder.Encode(Value ?? "", fixedRowCount);
         }
     }
 }
