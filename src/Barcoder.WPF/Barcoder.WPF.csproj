@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Barcoder, Version=1.0.0.59, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Barcoder.1.0.0.59\lib\netstandard2.0\Barcoder.dll</HintPath>
+    <Reference Include="Barcoder, Version=1.0.0.60, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Barcoder.1.0.0.60\lib\netstandard2.0\Barcoder.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

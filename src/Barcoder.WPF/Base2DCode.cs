@@ -9,12 +9,6 @@ namespace Barcoder.WPF
         public static readonly DependencyProperty ModuleSizeProperty = DependencyProperty.Register(nameof(ModuleSize), typeof(double), typeof(Base2DCode), new FrameworkPropertyMetadata(1d, FrameworkPropertyMetadataOptions.None));
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(nameof(Value), typeof(string), typeof(Base2DCode), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None));
 
-        public new double Height
-        {
-            get => base.Height;
-            protected set => base.Height = value;
-        }
-
         public double ModuleSize
         {
             get => (double)GetValue(ModuleSizeProperty);
@@ -25,12 +19,6 @@ namespace Barcoder.WPF
         {
             get => (string)GetValue(ValueProperty);
             set => SetValue(ValueProperty, value);
-        }
-
-        public new double Width
-        {
-            get => base.Width;
-            protected set => base.Width = value;
         }
 
         public override void Redraw()

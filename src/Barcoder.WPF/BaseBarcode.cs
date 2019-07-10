@@ -11,6 +11,18 @@ namespace Barcoder.WPF
         internal const string CanvasElementName = "PART_Canvas";
         protected Canvas _canvas;
 
+        public new double Height
+        {
+            get => base.Height;
+            protected set => base.Height = value;
+        }
+
+        public new double Width
+        {
+            get => base.Width;
+            protected set => base.Width = value;
+        }
+
         public override void OnApplyTemplate()
         {
             _canvas = GetTemplateChild(CanvasElementName) as Canvas;

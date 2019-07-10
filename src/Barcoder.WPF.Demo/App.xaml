@@ -1,0 +1,9 @@
+﻿<Application x:Class="Barcoder.WPF.Demo.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Barcoder.WPF.Demo"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary Source="pack://application:,,,/Barcoder.WPF;component/Theme.xaml" />
+    </Application.Resources>
+</Application>

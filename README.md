@@ -31,16 +31,17 @@ Install-Package Barcoder.WPF
 
 **Example MainWindow:**
 ```
-<Window x:Class="Barcode.MainWindow"
+<Window x:Class="Barcoder.WPF.Demo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Barcoder.WPF.Demo"
         xmlns:c="clr-namespace:Barcoder.WPF;assembly=Barcoder.WPF"
         mc:Ignorable="d" Title="MainWindow" Height="250" Width="500">
     <StackPanel Orientation="Horizontal">
-        <c:Code128 Value="123599" ModuleWidth="1" Height="50" Foreground="Red" IncludeChecksum="True" />
-        <c:DataMatrix Value="1234599" ModuleSize="8" Foreground="Green" />
+        <c:Code128 Value="123599" ModuleWidth="1" ModuleHeight="50" Foreground="Red" IncludeChecksum="True" HorizontalAlignment="Center" Rotation="Rotate0" Margin="10" />
+        <c:DataMatrix Value="1234599" ModuleSize="8" Foreground="Green" FixedRowCount="14" Margin="10" />
     </StackPanel>
 </Window>
 ```
