@@ -1,16 +1,17 @@
 using System.Windows;
 using System.Windows.Controls;
 using Barcoder.Code128;
+using Barcoder.WPF.Base;
 
 namespace Barcoder.WPF
 {
     [TemplatePart(Name = CanvasElementName, Type = typeof(Canvas))]
-    public class Code128 : Base1DCode
+    [TemplatePart(Name = ErrorTextBlock, Type = typeof(TextBlock))]
+    public class Code128 : Base1DCodeControl
     {
         public static readonly DependencyProperty IncludeChecksumProperty = DependencyProperty.Register(nameof(IncludeChecksum), typeof(bool), typeof(Code128), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.None));
 
         static Code128()
-
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Code128), new FrameworkPropertyMetadata(typeof(Code128)));
         }
@@ -23,7 +24,15 @@ namespace Barcoder.WPF
 
         protected override IBarcode GetBarcode()
         {
-            return Code128Encoder.Encode(Value ?? "", IncludeChecksum);
+            var value = Value;
+            if (string.IsNullOrEmpty(value))
+                return null;
+            return Code128Encoder.Encode(value, IncludeChecksum);
+        }
+
+        protected override IBarcode GetErrorBarcode()
+        {
+            return Code128Encoder.Encode(INVALID_TEXT_STRING, IncludeChecksum);
         }
     }
 }

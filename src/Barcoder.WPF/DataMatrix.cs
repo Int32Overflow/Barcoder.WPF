@@ -1,11 +1,12 @@
 using System.Windows;
 using System.Windows.Controls;
 using Barcoder.DataMatrix;
+using Barcoder.WPF.Base;
 
 namespace Barcoder.WPF
 {
     [TemplatePart(Name = CanvasElementName, Type = typeof(Canvas))]
-    public class DataMatrix : Base2DCode
+    public class DataMatrix : Base2DCodeControl
     {
         public static readonly DependencyProperty FixedRowCountProperty = DependencyProperty.Register(nameof(FixedRowCount), typeof(byte), typeof(DataMatrix), new FrameworkPropertyMetadata((byte)0, FrameworkPropertyMetadataOptions.None));
 
@@ -24,6 +25,11 @@ namespace Barcoder.WPF
         {
             int? fixedRowCount = FixedRowCount == 0 ? (int?)null : FixedRowCount;
             return DataMatrixEncoder.Encode(Value ?? "", fixedRowCount);
+        }
+
+        protected override IBarcode GetErrorBarcode()
+        {
+            return DataMatrixEncoder.Encode("Invalid");
         }
     }
 }

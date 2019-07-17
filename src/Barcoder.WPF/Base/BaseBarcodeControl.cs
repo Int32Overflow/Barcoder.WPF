@@ -3,13 +3,16 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace Barcoder.WPF
+namespace Barcoder.WPF.Base
 {
     [TemplatePart(Name = CanvasElementName, Type = typeof(Canvas))]
-    public abstract class BaseBarcode : Control
+    [TemplatePart(Name = ErrorTextBlock, Type = typeof(TextBlock))]
+    public abstract class BaseBarcodeControl : Control
     {
         internal const string CanvasElementName = "PART_Canvas";
+        internal const string ErrorTextBlock = "PART_Error_Text";
         protected Canvas _canvas;
+        protected TextBlock _errorTextBlock;
 
         public new double Height
         {
@@ -25,11 +28,22 @@ namespace Barcoder.WPF
 
         public override void OnApplyTemplate()
         {
+            base.OnApplyTemplate();
+
             _canvas = GetTemplateChild(CanvasElementName) as Canvas;
+            _errorTextBlock = GetTemplateChild(ErrorTextBlock) as TextBlock;
+
             Redraw();
         }
 
         public abstract void Redraw();
+
+        protected void AddControl(UIElement uIElement, double x, double y)
+        {
+            _canvas.Children.Add(uIElement);
+            Canvas.SetLeft(uIElement, x);
+            Canvas.SetTop(uIElement, y);
+        }
 
         protected void AddRectangle(double x, double y, double width, double height)
         {
@@ -41,13 +55,13 @@ namespace Barcoder.WPF
                 Height = height,
                 StrokeThickness = 0,
             };
-            _canvas.Children.Add(rect);
-            Canvas.SetLeft(rect, x);
-            Canvas.SetTop(rect, y);
+            AddControl(rect, x, y);
             RenderOptions.SetEdgeMode(rect, EdgeMode.Aliased);
         }
 
         protected abstract IBarcode GetBarcode();
+
+        protected abstract IBarcode GetErrorBarcode();
 
         protected T GetValue<T>(DependencyProperty dependencyProperty)
         {
