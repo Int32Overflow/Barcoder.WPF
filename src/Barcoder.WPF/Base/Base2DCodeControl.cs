@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Barcoder.WPF.Base
 {
@@ -28,17 +29,45 @@ namespace Barcoder.WPF.Base
 
             _canvas.Children.Clear();
 
+            var rotation = Rotation;
+
             var barcode = GetBarcode();
 
             base.Width = base.Height = barcode.Bounds.X * ModuleSize;
 
-            for (var y = 0; y < barcode.Bounds.Y; y++)
+            var xMax = barcode.Bounds.X;
+            var yMax = barcode.Bounds.Y;
+
+            for (var y = 0; y < yMax; y++)
             {
-                for (var x = 0; x < barcode.Bounds.X; x++)
+                for (var x = 0; x < xMax; x++)
                 {
                     if (barcode.At(x, y))
                     {
-                        AddRectangle(x * ModuleSize, y * ModuleSize, ModuleSize, ModuleSize);
+                        var newX = x;
+                        var newY = y;
+
+                        switch (rotation)
+                        {
+                            case Rotation.Rotate0:
+                                break;
+
+                            case Rotation.Rotate90:
+                                newX = xMax - y - 1;
+                                newY = x;
+                                break;
+
+                            case Rotation.Rotate180:
+                                newX = xMax - x - 1;
+                                newY = yMax - y - 1;
+                                break;
+
+                            case Rotation.Rotate270:
+                                newX = y;
+                                newY = yMax - x - 1;
+                                break;
+                        }
+                        AddRectangle(newX * ModuleSize, newY * ModuleSize, ModuleSize, ModuleSize);
                     }
                 }
             }

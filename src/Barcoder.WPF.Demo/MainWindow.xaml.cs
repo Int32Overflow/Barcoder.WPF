@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +19,18 @@ namespace Barcoder.WPF.Demo
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public Rotation[] Rotations => (Rotation[])Enum.GetValues(typeof(Rotation));
+        public Rotation SelectedRotation { get; set; }
+        public string Value { get; set; }
     }
 }

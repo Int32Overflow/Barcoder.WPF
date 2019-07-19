@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace Barcoder.WPF.Base
@@ -9,6 +10,8 @@ namespace Barcoder.WPF.Base
     [TemplatePart(Name = ErrorTextBlock, Type = typeof(TextBlock))]
     public abstract class BaseBarcodeControl : Control
     {
+        public static readonly DependencyProperty RotationProperty = DependencyProperty.Register(nameof(Rotation), typeof(Rotation), typeof(BaseBarcodeControl), new FrameworkPropertyMetadata(Rotation.Rotate0, FrameworkPropertyMetadataOptions.None));
+
         internal const string CanvasElementName = "PART_Canvas";
         internal const string ErrorTextBlock = "PART_Error_Text";
         protected Canvas _canvas;
@@ -18,6 +21,12 @@ namespace Barcoder.WPF.Base
         {
             get => base.Height;
             protected set => base.Height = value;
+        }
+
+        public Rotation Rotation
+        {
+            get => GetValue<Rotation>(RotationProperty);
+            set => SetValue(RotationProperty, value);
         }
 
         public new double Width

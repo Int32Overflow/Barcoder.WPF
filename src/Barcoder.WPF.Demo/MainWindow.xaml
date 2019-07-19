@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Barcoder.WPF.Demo"
         xmlns:c="clr-namespace:Barcoder.WPF;assembly=Barcoder.WPF"
-        mc:Ignorable="d" Title="MainWindow" Height="350" Width="800">
-    <StackPanel Orientation="Horizontal">
-        <c:Code128 Value="" ModuleWidth="1" ModuleHeight="50" Foreground="Red" IncludeChecksum="True" HorizontalAlignment="Center" Rotation="Rotate90" Margin="10" />
-        <c:Code128 Value="1234" ModuleWidth="1" ModuleHeight="50" Foreground="Red" IncludeChecksum="True" HorizontalAlignment="Center" Rotation="Rotate0" Margin="10" />
-        <c:Code39 Value="1234" ModuleWidth="2" ModuleHeight="50" Foreground="Black" Rotation="Rotate90" WideToNarrowBarWidthRatio="3" IncludeChecksum="False" Margin="10" />
-        <c:DataMatrix Value="1234599" ModuleSize="8" Foreground="Green" FixedRowCount="18" Margin="10" />
-        <c:QRCode Value="123Abc" ModuleSize="5"  Margin="10" />
+        mc:Ignorable="d" Title="MainWindow" Height="350" Width="1000">
+    <StackPanel Orientation="Vertical">
+        <TextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" />
+        <ComboBox ItemsSource="{Binding Rotations}" SelectedItem="{Binding SelectedRotation}" />
+        <StackPanel Orientation="Horizontal">
+            <c:Code128 Value="{Binding Value}" ModuleWidth="1" ModuleHeight="50" Foreground="Red" IncludeChecksum="True" HorizontalAlignment="Center" Rotation="{Binding SelectedRotation}" Margin="10" />
+            <c:Code39 Value="{Binding Value}" ModuleWidth="2" ModuleHeight="50" Foreground="Black" Rotation="{Binding SelectedRotation}" WideToNarrowBarWidthRatio="3" IncludeChecksum="False" Margin="10" />
+            <c:DataMatrix Value="{Binding Value}" ModuleSize="8" Foreground="Green" FixedRowCount="18" Rotation="{Binding SelectedRotation}" Margin="10" />
+            <c:QRCode Value="{Binding Value}" ModuleSize="5" Margin="10" Rotation="{Binding SelectedRotation}" />
+        </StackPanel>
     </StackPanel>
 </Window>

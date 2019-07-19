@@ -4,7 +4,7 @@
     <!--*-->
     <id>Barcoder.WPF</id>
     <!--*-->
-    <version>0.0.0.6</version>
+    <version>0.0.0.7</version>
     <title>Barcoder.WPF</title>
     <!--*-->
     <authors>Int32Overflow</authors>
@@ -16,9 +16,8 @@
     <!--*-->
     <description>Barcode WPF Control</description>
     <!--*-->
-    <releaseNotes>- Added Code39
-- Added QrCode
-- Refactoring</releaseNotes>
+    <releaseNotes>- Rotation fixed
+- Demo Application improved</releaseNotes>
     <copyright>Copyright ©  2019</copyright>
     <tags>
     </tags>

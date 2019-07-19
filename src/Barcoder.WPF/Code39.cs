@@ -50,7 +50,7 @@ namespace Barcoder.WPF
             var value = Value;
             if (string.IsNullOrEmpty(value))
                 return null;
-            return Code39Encoder.Encode(value, IncludeChecksum, false);
+            return Code39Encoder.Encode(value, IncludeChecksum, true);
         }
 
         protected override IBarcode GetErrorBarcode()

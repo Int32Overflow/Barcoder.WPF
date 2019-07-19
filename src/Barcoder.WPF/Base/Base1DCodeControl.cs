@@ -11,7 +11,6 @@ namespace Barcoder.WPF.Base
     {
         public static readonly DependencyProperty ModuleHeightProperty = DependencyProperty.Register(nameof(ModuleHeight), typeof(double), typeof(Base1DCodeControl), new FrameworkPropertyMetadata(10d, FrameworkPropertyMetadataOptions.None));
         public static readonly DependencyProperty ModuleWidthProperty = DependencyProperty.Register(nameof(ModuleWidth), typeof(double), typeof(Base1DCodeControl), new FrameworkPropertyMetadata(1d, FrameworkPropertyMetadataOptions.None));
-        public static readonly DependencyProperty RotationProperty = DependencyProperty.Register(nameof(Rotation), typeof(Rotation), typeof(Base1DCodeControl), new FrameworkPropertyMetadata(Rotation.Rotate0, FrameworkPropertyMetadataOptions.None));
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(nameof(Value), typeof(string), typeof(Base1DCodeControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None));
         protected const string INVALID_NUMBER_STRING = "1234";
         protected const string INVALID_TEXT_STRING = "Invalid";
@@ -26,12 +25,6 @@ namespace Barcoder.WPF.Base
         {
             get => GetValue<double>(ModuleWidthProperty);
             set => SetValue(ModuleWidthProperty, value);
-        }
-
-        public Rotation Rotation
-        {
-            get => GetValue<Rotation>(RotationProperty);
-            set => SetValue(RotationProperty, value);
         }
 
         public string Value
@@ -147,15 +140,34 @@ namespace Barcoder.WPF.Base
 
             var iMax = barcode.Bounds.X;
 
-            var lastI = 0;
-            var lastValue = false;
-            for (int i = 0; i < iMax; i++)
+            var binaryData = new bool[iMax];
+            switch (rotation)
             {
-                var value = barcode.At(i, 0);
+                case Rotation.Rotate0:
+                case Rotation.Rotate90:
+                    {
+                        for (int i = 0; i < iMax; i++)
+                            binaryData[i] = barcode.At(i, 0);
+                    }
+                    break;
+
+                case Rotation.Rotate180:
+                case Rotation.Rotate270:
+                    {
+                        for (int i = 0; i < iMax; i++)
+                            binaryData[i] = barcode.At(iMax - i - 1, 0);
+                    }
+                    break;
+            }
+
+            var lastValue = false;
+            var lastI = 0;
+            for (int i = lastI; i < iMax; i++)
+            {
+                var value = binaryData[i];
                 if (value != lastValue)
                 {
                     DrawBar(ref posX, ref posY, rotation, moduleHeight, lastValue, i - lastI);
-
                     lastValue = value;
                     lastI = i;
                 }
