@@ -9,11 +9,11 @@
     <StackPanel Orientation="Vertical">
         <TextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" />
         <ComboBox ItemsSource="{Binding Rotations}" SelectedItem="{Binding SelectedRotation}" />
-        <StackPanel Orientation="Horizontal">
+        <WrapPanel Orientation="Horizontal">
             <c:Code128 Value="{Binding Value}" ModuleWidth="1" ModuleHeight="50" Foreground="Red" IncludeChecksum="True" HorizontalAlignment="Center" Rotation="{Binding SelectedRotation}" Margin="10" />
             <c:Code39 Value="{Binding Value}" ModuleWidth="2" ModuleHeight="50" Foreground="Black" Rotation="{Binding SelectedRotation}" WideToNarrowBarWidthRatio="3" IncludeChecksum="False" Margin="10" />
             <c:DataMatrix Value="{Binding Value}" ModuleSize="8" Foreground="Green" FixedRowCount="18" Rotation="{Binding SelectedRotation}" Margin="10" />
             <c:QRCode Value="{Binding Value}" ModuleSize="5" Margin="10" Rotation="{Binding SelectedRotation}" />
-        </StackPanel>
+        </WrapPanel>
     </StackPanel>
 </Window>
