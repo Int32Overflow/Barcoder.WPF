@@ -15,6 +15,10 @@
     <PackageProjectUrl>https://github.com/Int32Overflow/Barcoder.WPF</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>barcode-scan.png</PackageIcon>
+    <Copyright>MIT</Copyright>
+    <Description>WPF-</Description>
+    <RepositoryUrl>https://github.com/Int32Overflow/Barcoder.WPF.git</RepositoryUrl>
+    <PackageTags>wpf;code128;qr;ean;barcoder;barcode;code39;datamatrix</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\README.md">
