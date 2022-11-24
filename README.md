@@ -16,11 +16,11 @@ Install-Package Barcoder.WPF
 - [x] Code 39
 - [x] DataMatrix (ECC 200)
 - [x] QR Code
+- [x] EAN 8
+- [x] EAN 13
 - [ ] 2 of 5
 - [ ] Codabar
 - [ ] Code 93
-- [ ] EAN 8
-- [ ] EAN 13
 
 ## Usage - WPF Control
 

@@ -19,6 +19,8 @@
 
     <Style TargetType="{x:Type local:Code128}" BasedOn="{StaticResource Style_BaseBarcode}" />
     <Style TargetType="{x:Type local:Code39}" BasedOn="{StaticResource Style_BaseBarcode}" />
+    <Style TargetType="{x:Type local:Ean8}" BasedOn="{StaticResource Style_BaseBarcode}" />
+    <Style TargetType="{x:Type local:Ean13}" BasedOn="{StaticResource Style_BaseBarcode}" />
 
     <Style TargetType="{x:Type local:DataMatrix}" BasedOn="{StaticResource Style_BaseBarcode}" />
     <Style TargetType="{x:Type local:QRCode}" BasedOn="{StaticResource Style_BaseBarcode}" />

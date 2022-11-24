@@ -1,7 +1,7 @@
-using System.Windows;
-using System.Windows.Controls;
 using Barcoder.Code128;
 using Barcoder.WPF.Base;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Barcoder.WPF
 {
