@@ -16,7 +16,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>barcode-scan.png</PackageIcon>
     <Copyright>MIT</Copyright>
-    <Description>WPF-</Description>
+    <Description>WPF components for the barcode library "barcoder" by "huysentruitw".  This library supports various 1D and 2D codes such as Code128, EAN-13, DataMatrix, QR-Code, ...</Description>
     <RepositoryUrl>https://github.com/Int32Overflow/Barcoder.WPF.git</RepositoryUrl>
     <PackageTags>wpf;code128;qr;ean;barcoder;barcode;code39;datamatrix</PackageTags>
   </PropertyGroup>
