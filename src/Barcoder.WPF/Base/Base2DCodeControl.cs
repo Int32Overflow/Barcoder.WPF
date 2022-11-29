@@ -24,10 +24,10 @@ namespace Barcoder.WPF.Base
 
         public override void Redraw()
         {
-            if (_canvas == null)
+            if (canvas == null)
                 return;
 
-            _canvas.Children.Clear();
+            canvas.Children.Clear();
 
             var rotation = Rotation;
 

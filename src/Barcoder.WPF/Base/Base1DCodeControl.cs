@@ -38,40 +38,40 @@ namespace Barcoder.WPF.Base
             const double posX = 0;
             const double posY = 0;
 
-            if (_canvas == null)
+            if (canvas == null)
                 return;
 
-            _canvas.Children.Clear();
+            canvas.Children.Clear();
 
             var barcode = GetBarcode();
 
             if (barcode == null)
             {
                 DrawBarcode(posX, posY, GetErrorBarcode());
-                _errorTextBlock.Visibility = Visibility.Visible;
-                _errorTextBlock.Text = "Invalid";
+                errorTextBlock.Visibility = Visibility.Visible;
+                errorTextBlock.Text = "Invalid";
                 switch (Rotation)
                 {
                     case Rotation.Rotate0:
-                        _errorTextBlock.LayoutTransform = null;
+                        errorTextBlock.LayoutTransform = null;
                         break;
 
                     case Rotation.Rotate90:
-                        _errorTextBlock.LayoutTransform = new RotateTransform(90);
+                        errorTextBlock.LayoutTransform = new RotateTransform(90);
                         break;
 
                     case Rotation.Rotate180:
-                        _errorTextBlock.LayoutTransform = new RotateTransform(180);
+                        errorTextBlock.LayoutTransform = new RotateTransform(180);
                         break;
 
                     case Rotation.Rotate270:
-                        _errorTextBlock.LayoutTransform = new RotateTransform(270);
+                        errorTextBlock.LayoutTransform = new RotateTransform(270);
                         break;
                 }
             }
             else
             {
-                _errorTextBlock.Visibility = Visibility.Collapsed;
+                errorTextBlock.Visibility = Visibility.Collapsed;
                 DrawBarcode(posX, posY, barcode);
             }
         }

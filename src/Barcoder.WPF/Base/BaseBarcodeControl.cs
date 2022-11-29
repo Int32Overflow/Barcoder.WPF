@@ -14,8 +14,8 @@ namespace Barcoder.WPF.Base
 
         internal const string CanvasElementName = "PART_Canvas";
         internal const string ErrorTextBlock = "PART_Error_Text";
-        protected Canvas _canvas;
-        protected TextBlock _errorTextBlock;
+        protected Canvas canvas;
+        protected TextBlock errorTextBlock;
 
         public new double Height
         {
@@ -39,8 +39,8 @@ namespace Barcoder.WPF.Base
         {
             base.OnApplyTemplate();
 
-            _canvas = GetTemplateChild(CanvasElementName) as Canvas;
-            _errorTextBlock = GetTemplateChild(ErrorTextBlock) as TextBlock;
+            canvas = GetTemplateChild(CanvasElementName) as Canvas;
+            errorTextBlock = GetTemplateChild(ErrorTextBlock) as TextBlock;
 
             Redraw();
         }
@@ -49,7 +49,7 @@ namespace Barcoder.WPF.Base
 
         protected void AddControl(UIElement uIElement, double x, double y)
         {
-            _canvas.Children.Add(uIElement);
+            canvas.Children.Add(uIElement);
             Canvas.SetLeft(uIElement, x);
             Canvas.SetTop(uIElement, y);
         }
@@ -63,6 +63,7 @@ namespace Barcoder.WPF.Base
                 Width = width,
                 Height = height,
                 StrokeThickness = 0,
+                IsHitTestVisible = IsHitTestVisible,
             };
             AddControl(rect, x, y);
             RenderOptions.SetEdgeMode(rect, EdgeMode.Aliased);
