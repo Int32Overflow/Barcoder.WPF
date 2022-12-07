@@ -8,32 +8,29 @@ namespace Barcoder.WPF
     [TemplatePart(Name = CanvasElementName, Type = typeof(Canvas))]
     public class DataMatrix : Base2DCodeControl
     {
-        public static readonly DependencyProperty FixedColumnCountProperty = DependencyProperty.Register(nameof(FixedColumnCount), typeof(byte), typeof(DataMatrix), new FrameworkPropertyMetadata((byte)0, FrameworkPropertyMetadataOptions.None));
-        public static readonly DependencyProperty FixedRowCountProperty = DependencyProperty.Register(nameof(FixedRowCount), typeof(byte), typeof(DataMatrix), new FrameworkPropertyMetadata((byte)0, FrameworkPropertyMetadataOptions.None));
+        public static readonly DependencyProperty SizeProperty = DependencyProperty.Register(nameof(Size), typeof(DataMatrixSize), typeof(DataMatrix), new FrameworkPropertyMetadata(DataMatrixSize.Auto, FrameworkPropertyMetadataOptions.None));
 
         static DataMatrix()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(DataMatrix), new FrameworkPropertyMetadata(typeof(DataMatrix)));
         }
 
-        public byte FixedColumnCount
+        public DataMatrixSize Size
         {
-            get => GetValue<byte>(FixedColumnCountProperty);
-            set => SetValue(FixedColumnCountProperty, value);
-        }
-
-        public byte FixedRowCount
-        {
-            get => GetValue<byte>(FixedRowCountProperty);
-            set => SetValue(FixedRowCountProperty, value);
+            get => GetValue<DataMatrixSize>(SizeProperty);
+            set => SetValue(SizeProperty, value);
         }
 
         protected override IBarcode GetBarcode()
         {
-            int? fixedRowCount = FixedRowCount == 0 ? null : FixedRowCount;
-            int? fixedColumnCount = FixedRowCount == 0 ? null : FixedRowCount;
-            if (fixedColumnCount == null || fixedRowCount == null)
-                fixedRowCount = fixedColumnCount = null;
+            int? fixedRowCount = null, fixedColumnCount = null;
+            if (Size != DataMatrixSize.Auto)
+            {
+                Size.ToRowsAndColumns(out var rows, out var columns);
+                fixedRowCount = rows;
+                fixedColumnCount = columns;
+            }
+
             return DataMatrixEncoder.Encode(Value ?? "", fixedRowCount, fixedColumnCount);
         }
 
