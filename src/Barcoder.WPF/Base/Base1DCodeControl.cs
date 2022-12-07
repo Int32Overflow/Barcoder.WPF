@@ -33,49 +33,6 @@ namespace Barcoder.WPF.Base
             set => SetValue(ValueProperty, value);
         }
 
-        public override void Redraw()
-        {
-            const double posX = 0;
-            const double posY = 0;
-
-            if (canvas == null)
-                return;
-
-            canvas.Children.Clear();
-
-            var barcode = GetBarcode();
-
-            if (barcode == null)
-            {
-                DrawBarcode(posX, posY, GetErrorBarcode());
-                errorTextBlock.Visibility = Visibility.Visible;
-                errorTextBlock.Text = "Invalid";
-                switch (Rotation)
-                {
-                    case Rotation.Rotate0:
-                        errorTextBlock.LayoutTransform = null;
-                        break;
-
-                    case Rotation.Rotate90:
-                        errorTextBlock.LayoutTransform = new RotateTransform(90);
-                        break;
-
-                    case Rotation.Rotate180:
-                        errorTextBlock.LayoutTransform = new RotateTransform(180);
-                        break;
-
-                    case Rotation.Rotate270:
-                        errorTextBlock.LayoutTransform = new RotateTransform(270);
-                        break;
-                }
-            }
-            else
-            {
-                errorTextBlock.Visibility = Visibility.Collapsed;
-                DrawBarcode(posX, posY, barcode);
-            }
-        }
-
         protected virtual double CalculateBarWidth(bool isBlack, int modulesCount)
         {
             return modulesCount * ModuleWidth;
@@ -97,30 +54,30 @@ namespace Barcoder.WPF.Base
             }
         }
 
-        private void DrawBar(double posX, double posY, Rotation rotation, double width, double height)
+        private void DrawBar(double posX, double posY, Rotation rotation, double width, double height, Brush foreground)
         {
             switch (rotation)
             {
                 case Rotation.Rotate0:
                 case Rotation.Rotate180:
-                    AddRectangle(posX, posY, width, height);
+                    AddRectangle(posX, posY, width, height, foreground);
                     break;
 
                 case Rotation.Rotate90:
                 case Rotation.Rotate270:
-                    AddRectangle(posX, posY, height, width);
+                    AddRectangle(posX, posY, height, width, foreground);
                     break;
             }
         }
 
-        private void DrawBar(ref double posX, ref double posY, Rotation rotation, double moduleHeight, bool isBlack, int barCounts)
+        private void DrawBar(ref double posX, ref double posY, Rotation rotation, double moduleHeight, bool isBlack, int barCounts, Brush foreground)
         {
             if (barCounts > 0)
             {
                 var barWidth = CalculateBarWidth(isBlack, barCounts);
                 if (isBlack)
                 {
-                    DrawBar(posX, posY, rotation, barWidth, moduleHeight);
+                    DrawBar(posX, posY, rotation, barWidth, moduleHeight, foreground);
                 }
                 else
                 {
@@ -129,8 +86,7 @@ namespace Barcoder.WPF.Base
                 CalculateNextBarPosition(ref posX, ref posY, rotation, barWidth);
             }
         }
-
-        private void DrawBarcode(double posX, double posY, IBarcode barcode)
+        protected override void DrawCode(double posX, double posY, IBarcode barcode, Brush foreground)
         {
             var orgPosX = posX;
             var orgPosY = posY;
@@ -167,14 +123,14 @@ namespace Barcoder.WPF.Base
                 var value = binaryData[i];
                 if (value != lastValue)
                 {
-                    DrawBar(ref posX, ref posY, rotation, moduleHeight, lastValue, i - lastI);
+                    DrawBar(ref posX, ref posY, rotation, moduleHeight, lastValue, i - lastI, foreground);
                     lastValue = value;
                     lastI = i;
                 }
             }
             if (lastI != iMax)
             {
-                DrawBar(ref posX, ref posY, rotation, moduleHeight, lastValue, iMax - lastI);
+                DrawBar(ref posX, ref posY, rotation, moduleHeight, lastValue, iMax - lastI, foreground);
             }
 
             switch (rotation)

@@ -10,12 +10,18 @@ namespace Barcoder.WPF.Base
     [TemplatePart(Name = ErrorTextBlock, Type = typeof(TextBlock))]
     public abstract class BaseBarcodeControl : Control
     {
+        public static readonly DependencyProperty ForegroundInvalidProperty = DependencyProperty.Register(nameof(ForegroundInvalid), typeof(Brush), typeof(BaseBarcodeControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None));
         public static readonly DependencyProperty RotationProperty = DependencyProperty.Register(nameof(Rotation), typeof(Rotation), typeof(BaseBarcodeControl), new FrameworkPropertyMetadata(Rotation.Rotate0, FrameworkPropertyMetadataOptions.None));
-
         internal const string CanvasElementName = "PART_Canvas";
         internal const string ErrorTextBlock = "PART_Error_Text";
         protected Canvas canvas;
         protected TextBlock errorTextBlock;
+
+        public Brush ForegroundInvalid
+        {
+            get => GetValue<Brush>(ForegroundInvalidProperty);
+            set => SetValue(ForegroundInvalidProperty, value);
+        }
 
         public new double Height
         {
@@ -45,7 +51,56 @@ namespace Barcoder.WPF.Base
             Redraw();
         }
 
-        public abstract void Redraw();
+        public void Redraw()
+        {
+            const double posX = 0;
+            const double posY = 0;
+
+            if (canvas == null)
+                return;
+
+            canvas.Children.Clear();
+
+            IBarcode barcode = default;
+            try
+            {
+                barcode = GetBarcode();
+            }
+            catch { }
+
+            if (barcode == null)
+            {
+                DrawCode(posX, posY, GetErrorBarcode(), ForegroundInvalid ?? Foreground);
+                errorTextBlock.Visibility = Visibility.Visible;
+                errorTextBlock.Text = "Invalid";
+                errorTextBlock.Foreground = ForegroundInvalid ?? Foreground;
+                switch (Rotation)
+                {
+                    case Rotation.Rotate0:
+                        errorTextBlock.LayoutTransform = null;
+                        break;
+
+                    case Rotation.Rotate90:
+                        errorTextBlock.LayoutTransform = new RotateTransform(90);
+                        break;
+
+                    case Rotation.Rotate180:
+                        errorTextBlock.LayoutTransform = new RotateTransform(180);
+                        break;
+
+                    case Rotation.Rotate270:
+                        errorTextBlock.LayoutTransform = new RotateTransform(270);
+                        break;
+                }
+            }
+            else
+            {
+                errorTextBlock.Visibility = Visibility.Collapsed;
+                DrawCode(posX, posY, barcode, Foreground);
+            }
+        }
+
+        protected abstract void DrawCode(double posX, double posY, IBarcode barcode, Brush foreground);
 
         protected void AddControl(UIElement uIElement, double x, double y)
         {
@@ -54,12 +109,12 @@ namespace Barcoder.WPF.Base
             Canvas.SetTop(uIElement, y);
         }
 
-        protected void AddRectangle(double x, double y, double width, double height)
+        protected void AddRectangle(double x, double y, double width, double height, Brush foreground)
         {
             var rect = new Rectangle()
             {
-                Fill = Foreground,
-                Stroke = Foreground,
+                Fill = foreground,
+                Stroke = foreground,
                 Width = width,
                 Height = height,
                 StrokeThickness = 0,

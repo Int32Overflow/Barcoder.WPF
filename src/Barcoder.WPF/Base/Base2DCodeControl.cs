@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System.Dynamic;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 
 namespace Barcoder.WPF.Base
 {
@@ -21,18 +24,8 @@ namespace Barcoder.WPF.Base
             get => (string)GetValue(ValueProperty);
             set => SetValue(ValueProperty, value);
         }
-
-        public override void Redraw()
+        protected override void DrawCode(double posX, double posY, IBarcode barcode, Brush foreground)
         {
-            if (canvas == null)
-                return;
-
-            canvas.Children.Clear();
-
-            var rotation = Rotation;
-
-            var barcode = GetBarcode();
-
             base.Width = base.Height = barcode.Bounds.X * ModuleSize;
 
             var xMax = barcode.Bounds.X;
@@ -47,7 +40,7 @@ namespace Barcoder.WPF.Base
                         var newX = x;
                         var newY = y;
 
-                        switch (rotation)
+                        switch (Rotation)
                         {
                             case Rotation.Rotate0:
                                 break;
@@ -67,10 +60,10 @@ namespace Barcoder.WPF.Base
                                 newY = yMax - x - 1;
                                 break;
                         }
-                        AddRectangle(newX * ModuleSize, newY * ModuleSize, ModuleSize, ModuleSize);
+                        AddRectangle(newX * ModuleSize, newY * ModuleSize, ModuleSize, ModuleSize, foreground);
                     }
                 }
             }
-        }
+        }       
     }
 }
