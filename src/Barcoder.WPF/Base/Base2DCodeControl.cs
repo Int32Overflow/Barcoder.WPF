@@ -26,7 +26,8 @@ namespace Barcoder.WPF.Base
         }
         protected override void DrawCode(double posX, double posY, IBarcode barcode, Brush foreground)
         {
-            base.Width = base.Height = barcode.Bounds.X * ModuleSize;
+            base.Width = barcode.Bounds.X * ModuleSize;
+            base.Height = barcode.Bounds.Y * ModuleSize;
 
             var xMax = barcode.Bounds.X;
             var yMax = barcode.Bounds.Y;

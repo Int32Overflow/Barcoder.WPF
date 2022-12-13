@@ -8,10 +8,10 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>1.0.4</AssemblyVersion>
-    <FileVersion>1.0.4</FileVersion>
+    <AssemblyVersion>1.0.5</AssemblyVersion>
+    <FileVersion>1.0.5</FileVersion>
     <PackageProjectUrl>https://github.com/Int32Overflow/Barcoder.WPF</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>barcode-scan.png</PackageIcon>
@@ -31,6 +31,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Barcoder" Version="1.1.1" />
+    <PackageReference Include="Barcoder" Version="2.0.0" />
   </ItemGroup>
 </Project>
