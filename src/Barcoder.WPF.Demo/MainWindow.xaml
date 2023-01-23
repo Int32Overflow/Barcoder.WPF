@@ -1,21 +1,30 @@
 ﻿<Window x:Class="Barcoder.WPF.Demo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Barcoder.WPF.Demo"
         xmlns:c="clr-namespace:Barcoder.WPF;assembly=Barcoder.WPF"
         mc:Ignorable="d" Title="MainWindow" Height="350" Width="1000">
-    <StackPanel Orientation="Vertical">
-        <TextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" />
-        <ComboBox ItemsSource="{Binding Rotations}" SelectedItem="{Binding SelectedRotation}" />
-        <WrapPanel Orientation="Horizontal">
-            <c:Code128 Value="{Binding Value}" ModuleWidth="1" ModuleHeight="50" Foreground="Black" ForegroundInvalid="Red" IncludeChecksum="True" HorizontalAlignment="Center" Rotation="{Binding SelectedRotation}" Margin="10" />
-            <c:Code39 Value="{Binding Value}" ModuleWidth="2" ModuleHeight="50" Foreground="Black" Rotation="{Binding SelectedRotation}" WideToNarrowBarWidthRatio="3" IncludeChecksum="False" Margin="10" />
-            <c:DataMatrix Value="{Binding Value}" ModuleSize="8" Foreground="Green" ForegroundInvalid="Red" Size="Size_10x10" Rotation="{Binding SelectedRotation}" Margin="10" />
-            <c:QRCode Value="{Binding Value}" ModuleSize="5" Margin="10" Rotation="{Binding SelectedRotation}" />
-            <c:Ean13 Value="{Binding Value}" ModuleWidth="1" ModuleHeight="50" Foreground="Red" Rotation="{Binding SelectedRotation}" Margin="10" />
-            <c:Ean8 Value="{Binding Value}" ModuleWidth="1" ModuleHeight="50" Foreground="Red" Rotation="{Binding SelectedRotation}" Margin="10" />
-        </WrapPanel>
-    </StackPanel>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <DockPanel Margin="3 3">
+                <TextBlock DockPanel.Dock="Left" FontWeight="Bold" Margin="0 0 5 0">Value:</TextBlock>
+                <TextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
+            <DockPanel Margin="3 3">
+                <TextBlock DockPanel.Dock="Left" FontWeight="Bold" Margin="0 0 5 0">Invalid Text:</TextBlock>
+                <TextBox Text="{Binding TextInvalid, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
+        </StackPanel>        
+        <ScrollViewer>
+            <WrapPanel Orientation="Horizontal">
+                <c:Code128 Value="{Binding Value}" TextInvalid="{Binding TextInvalid}" ModuleWidth="1" ModuleHeight="50" Foreground="Black" ForegroundInvalid="Red" IncludeChecksum="True" HorizontalAlignment="Center" Margin="10" />
+                <c:Code39 Value="{Binding Value}" TextInvalid="{Binding TextInvalid}" ModuleWidth="2" ModuleHeight="50" Foreground="Black" WideToNarrowBarWidthRatio="3" IncludeChecksum="False" Margin="10" />
+                <c:DataMatrix Value="{Binding Value}" TextInvalid="{Binding TextInvalid}" ModuleSize="8" Foreground="Green" ForegroundInvalid="Red" Size="Size_10x10" Margin="10" />
+                <c:QRCode Value="{Binding Value}" TextInvalid="{Binding TextInvalid}" ModuleSize="5" Margin="10" />
+                <c:Ean13 Value="{Binding Value}" TextInvalid="{Binding TextInvalid}" MarkerLineLength="10" ModuleWidth="2" ModuleHeight="100" Foreground="DarkSlateGray" Margin="10" />
+                <c:Ean8 Value="{Binding Value}" TextInvalid="{Binding TextInvalid}" MarkerLineLength="15" ModuleWidth="1" ModuleHeight="50" Foreground="Red" Margin="10" />
+            </WrapPanel>
+        </ScrollViewer>
+    </DockPanel>
 </Window>

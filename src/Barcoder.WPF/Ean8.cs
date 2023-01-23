@@ -8,7 +8,7 @@ namespace Barcoder.WPF
 {
     [TemplatePart(Name = CanvasElementName, Type = typeof(Canvas))]
     [TemplatePart(Name = ErrorTextBlock, Type = typeof(TextBlock))]
-    public class Ean8 : Base1DCodeControl
+    public class Ean8 : BaseEanCodeControl
     {
         static Ean8()
         {

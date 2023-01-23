@@ -10,7 +10,9 @@
                 <ControlTemplate TargetType="{x:Type baseControls:BaseBarcodeControl}">
                     <Grid>
                         <Canvas x:Name="PART_Canvas" Background="Transparent"/>
-                        <TextBlock x:Name="PART_Error_Text" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Background="White" FontWeight="Bold" FontSize="14" Padding="5" Visibility="Collapsed"/>
+                        <TextBlock x:Name="PART_Error_Text" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" 
+                                   Background="White" FontWeight="Bold" FontSize="14" Padding="5" Visibility="Collapsed"
+                                   />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

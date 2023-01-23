@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Barcoder.WPF.Base;
+using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Barcoder.WPF.Demo
 {
@@ -29,8 +19,7 @@ namespace Barcoder.WPF.Demo
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Rotation[] Rotations => (Rotation[])Enum.GetValues(typeof(Rotation));
-        public Rotation SelectedRotation { get; set; }
+        public string TextInvalid { get; set; } = BaseBarcodeControl.INVALID_TEXT_STRING;
         public string Value { get; set; }
     }
 }

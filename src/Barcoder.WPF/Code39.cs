@@ -35,7 +35,7 @@ namespace Barcoder.WPF
             }
         }
 
-        protected override double CalculateBarWidth(bool isBlack, int modulesCount)
+        protected override double CalculateBarWidth(int modulesCount)
         {
             if (modulesCount == 1)
                 return modulesCount * ModuleWidth;
